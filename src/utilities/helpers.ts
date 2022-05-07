@@ -1,5 +1,4 @@
 export const isValidEmail = (submittedEmail: string): string => {
-  console.log("email");
   if (submittedEmail.length === 0) {
     return "Can't be empty";
   } else if (!/\S+@\S+\.\S+/.test(submittedEmail)) {
@@ -10,7 +9,6 @@ export const isValidEmail = (submittedEmail: string): string => {
 };
 
 export const isValidPassword = (submittedPassword: string): string => {
-  console.log("pwd");
   if (submittedPassword.length === 0) {
     return "Can't be empty";
   } else if (submittedPassword.length < 8) {
