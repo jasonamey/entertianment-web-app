@@ -43,8 +43,8 @@ const MediaContentItemWrapper = styled.div<{
   largeImage: string;
   smallImage: string;
 }>`
-  margin-block-end: 20px;
   width: 168px;
+  margin-bottom: 20px;
 
   .image-wrapper {
     position: relative;
@@ -52,7 +52,7 @@ const MediaContentItemWrapper = styled.div<{
     width: 100%;
     height: 110px;
     border-radius: 10px;
-    margin-block-end: 8px;
+    margin-block-end: 5px;
     .image-container {
       width: 100%;
       height: 100%;
@@ -68,7 +68,7 @@ const MediaContentItemWrapper = styled.div<{
 
   @media screen and ${device.tablet} {
     width: 224px;
-    margin-block-end: 24px;
+    margin-bottom: 24px;
     .image-wrapper {
       height: 140px;
     }

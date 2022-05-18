@@ -3,6 +3,7 @@ import {MediaContent} from "../types/MediaContent";
 import styled from "styled-components";
 import BookmarkBadge from "./BookmarkBadge";
 import TitleBadge from "./TitleBadge";
+import {device} from "../styles/devices";
 
 const TrendingMovie = (props: MediaContent) => {
   const {year, category, rating, title, id} = props;
@@ -30,8 +31,8 @@ const TrendingMovieWrapper = styled.div<{
 }>`
   position: relative;
   overflow: hidden;
-  margin-inline-end: 40px;
-  min-width: 470px;
+  margin-right: 15px;
+  min-width: 240px;
   border-radius: 10px;
 
   .image-container {
@@ -45,7 +46,9 @@ const TrendingMovieWrapper = styled.div<{
       transform: scale(1.1);
     }
   }
-  @media screen and (min-width: 800px) {
+  @media screen and ${device.tablet} {
+    min-width: 470px;
+    margin-right: 40px;
     .image-container {
       background-image: url("${(props) => props.largeImage}");
     }
@@ -53,3 +56,5 @@ const TrendingMovieWrapper = styled.div<{
 `;
 
 export default TrendingMovie;
+
+//240pxw

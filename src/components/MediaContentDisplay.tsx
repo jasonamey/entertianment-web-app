@@ -31,7 +31,7 @@ const MediaContentDisplayWrapper = styled.div`
   justify-items: center;
 
   @media screen and ${device.mobileM} {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 
   @media screen and ${device.mobileL} {

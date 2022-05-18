@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import TrendingMovie from "./TrendingMovie";
 import {MediaContent} from "../types/MediaContent";
+import {device} from "../styles/devices";
 
 type TrendingMoviewsProps = {
   movies: MediaContent[];
@@ -27,11 +28,15 @@ const TrendingMoviesWrapper = styled.div`
   overflow: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  height: 230px;
+  height: 140px;
   border-radius: 10px;
-  margin-block-end: 50px;
+  margin-block-end: 20px;
   &::-webkit-scrollbar {
     display: none;
+  }
+  @media screen and ${device.tablet} {
+    margin-block-end: 50px;
+    height: 230px;
   }
 `;
 

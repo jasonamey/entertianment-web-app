@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import logo from "../assets/icon-nav-movies.svg";
+import {device} from "../styles/devices";
 
 type TitleBadgeProps = {
   position: "trending" | "feature";
@@ -34,18 +35,32 @@ const TitleBadgeWrapper = styled.div<{position: string}>`
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  bottom: ${(props) => (props.position === "trending" ? "24px" : "0")};
-  left: ${(props) => (props.position === "trending" ? "24px" : "0")};
+  bottom: ${(props) => (props.position === "trending" ? "8px" : "0")};
+  left: ${(props) => (props.position === "trending" ? "12px" : "0")};
   .film-info-container {
+    font-size: 11px;
     opacity: 0.6;
     font-weight: 200;
+    margin-bottom: 2px;
     span {
       margin-inline-end: 8px;
     }
   }
   h3 {
-    font-size: ${(props) => (props.position === "trending" ? "24px" : "18px")};
+    font-size: ${(props) => (props.position === "trending" ? "15px" : "13px")};
     letter-spacing: 1px;
+  }
+
+  @media screen and ${device.tablet} {
+    bottom: ${(props) => (props.position === "trending" ? "24px" : "0")};
+    left: ${(props) => (props.position === "trending" ? "24px" : "0")};
+    .film-info-container {
+      font-size: 16px;
+    }
+    h3 {
+      font-size: ${(props) =>
+        props.position === "trending" ? "24px" : "18px"};
+    }
   }
 `;
 
