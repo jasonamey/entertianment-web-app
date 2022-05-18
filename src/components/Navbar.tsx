@@ -18,8 +18,11 @@ const Navbar = (props: NavbarProps) => {
   return (
     <NavbarWrapper>
       <nav>
-        <div className="nav-links">
+        <div className="logo-container">
           <img className="site-logo" src={SiteLogo} alt="Site Logo" />
+        </div>
+        <div className="nav-links">
+          {/* <img className="site-logo" src={SiteLogo} alt="Site Logo" /> */}
           <Link to="/">
             <HomeIcon />
           </Link>
@@ -33,7 +36,9 @@ const Navbar = (props: NavbarProps) => {
             <BookmarkIcon />
           </Link>
         </div>
-        <Avatar initials={"JA"} />
+        <div className="avatar-container">
+          <Avatar initials={"JA"} />
+        </div>
       </nav>
     </NavbarWrapper>
   );
@@ -42,53 +47,74 @@ const Navbar = (props: NavbarProps) => {
 const NavbarWrapper = styled.div`
   margin-bottom: 34px;
   position: relative;
-
   nav {
-    padding: 16px;
     border-radius: 10px;
+    padding: 12px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     position: relative;
-
     background-color: ${(props) => props.theme.darkBlue};
+
     .nav-links {
       display: flex;
       flex-direction: row;
       align-items: center;
+      justify-content: space-between;
+      width: 138px;
       .site-logo {
         cursor: pointer;
       }
       .nav-icon {
-        width: 19px;
+        width: 14px;
         cursor: pointer;
         fill: #ffffff;
       }
     }
   }
+
+  @media screen and ${device.mobileL} {
+    nav {
+      padding: 20px;
+      .nav-links {
+        width: 176px;
+        .nav-icon {
+          width: 19px;
+        }
+      }
+    }
+  }
+
   @media screen and ${device.laptop} {
     position: absolute;
     height: 100%;
     padding: 0 30px;
     width: ${(props) => props.theme.navbarWidth};
     nav {
+      padding: 38px 0 0 0;
       flex-direction: column;
+      display: block;
       height: 800px;
-      padding: 38px;
       border-radius: 14px;
+      position: relative;
+      .logo-container {
+        width: 98px;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 78px;
+      }
       .nav-links {
         flex-direction: column;
-        .site-logo {
-          margin-block-end: 78px;
-          cursor: pointer;
-        }
-        .nav-icon {
-          width: 19px;
-          margin-block-end: 40px;
-          cursor: pointer;
-          fill: #ffffff;
-        }
+        width: auto;
+      }
+      .avatar-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        bottom: 38px;
       }
     }
   }
