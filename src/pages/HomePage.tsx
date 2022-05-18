@@ -1,10 +1,10 @@
-import * as React from "react";
+import React from "react";
 import {useUserAuth} from "../context/UserAuthContext";
 import ContentPageContainer from "../components/ui/ContentPageContainer";
-import useFirebaseData from "../hooks/useFirebaseData";
 import TrendingMovies from "../components/TrendingMovies";
-import {MediaContent} from "../types/MediaContent";
 import MediaContentDisplay from "../components/MediaContentDisplay";
+import useFirebaseData from "../hooks/useFirebaseData";
+import {MediaContent} from "../types/MediaContent";
 
 type FirebaseData =
   | [isLoading: boolean, data: MediaContent[]]
@@ -37,4 +37,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Home as React.FC;

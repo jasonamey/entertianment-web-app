@@ -6,6 +6,7 @@ import Searchbar from "../Searchbar";
 import {useUserAuth} from "../../context/UserAuthContext";
 import {collection, doc, updateDoc} from "firebase/firestore";
 import {db} from "../../firebase";
+import {device} from "../../styles/devices";
 
 type ContentPageContainerProps = {
   children: JSX.Element | JSX.Element[];
@@ -31,7 +32,11 @@ const ContentPageContainer = ({children}: ContentPageContainerProps) => {
 };
 
 const ContentPageContainerWrapper = styled.div`
-  @media screen and (min-width: 769px) {
+  margin-right: 0;
+  margin-inline-start: 0;
+  padding: 24px;
+  @media screen and ${device.laptop} {
+    padding: 0;
     .right-desktop {
       margin-inline-start: ${(props) => props.theme.navbarWidth};
       display: flex;

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import {MediaContent} from "../types/MediaContent";
 import styled from "styled-components";
 import BookmarkBadge from "./BookmarkBadge";

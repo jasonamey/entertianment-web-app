@@ -1,9 +1,9 @@
-import * as React from "react";
+import React from "react";
 import styled from "styled-components";
 import {MediaContent} from "../types/MediaContent";
 import BookmarkBadge from "./BookmarkBadge";
 import TitleBadge from "./TitleBadge";
-
+import {device} from "../styles/devices";
 type MediaContentItemProps = MediaContent & {
   id: string;
 };
@@ -31,17 +31,26 @@ const MediaContentItem = (props: MediaContentItemProps) => {
   }
 };
 
+// @media screen and ${device.mobileL} {
+//   width: 168px;
+//   margin-block-end: 20px;
+//   .image-wrapper {
+//     height: 110px;
+//   }
+// }
+
 const MediaContentItemWrapper = styled.div<{
   largeImage: string;
   smallImage: string;
 }>`
-  margin-block-end: 40px;
-  width: 279px;
+  margin-block-end: 20px;
+  width: 168px;
+
   .image-wrapper {
     position: relative;
     overflow: hidden;
     width: 100%;
-    height: 180px;
+    height: 110px;
     border-radius: 10px;
     margin-block-end: 8px;
     .image-container {
@@ -54,6 +63,22 @@ const MediaContentItemWrapper = styled.div<{
       &:hover {
         transform: scale(1.1);
       }
+    }
+  }
+
+  @media screen and ${device.tablet} {
+    width: 224px;
+    margin-block-end: 24px;
+    .image-wrapper {
+      height: 140px;
+    }
+  }
+
+  @media screen and ${device.laptop} {
+    width: 279px;
+    margin-block-end: 40px;
+    .image-wrapper {
+      height: 180px;
     }
   }
 `;

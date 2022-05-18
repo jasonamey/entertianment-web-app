@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import styled from "styled-components";
 import {Link} from "react-router-dom";
 import HomeIcon from "./icons/HomeIcon";
@@ -7,6 +7,7 @@ import MoviesIcon from "./icons/MoviesIcon";
 import TVIcon from "./icons/TvIcon";
 import SiteLogo from "../assets/logo.svg";
 import Avatar from "./Avatar";
+import {device} from "../styles/devices";
 
 type NavbarProps = {
   path: string;
@@ -32,42 +33,62 @@ const Navbar = (props: NavbarProps) => {
             <BookmarkIcon />
           </Link>
         </div>
-        <Avatar backgroundColor={"green"} initials={"JA"} />
+        <Avatar initials={"JA"} />
       </nav>
     </NavbarWrapper>
   );
 };
 
 const NavbarWrapper = styled.div`
-  height: 100%;
-  width: ${(props) => props.theme.navbarWidth};
-  padding-inline: 30px;
-  position: absolute;
+  margin-bottom: 34px;
+  position: relative;
 
   nav {
-    height: 800px;
-    padding: 38px;
-    border-radius: 14px;
+    padding: 16px;
+    border-radius: 10px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     position: relative;
-    width: 100%;
+
     background-color: ${(props) => props.theme.darkBlue};
     .nav-links {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
       .site-logo {
-        margin-block-end: 78px;
         cursor: pointer;
       }
       .nav-icon {
         width: 19px;
-        margin-block-end: 40px;
         cursor: pointer;
         fill: #ffffff;
+      }
+    }
+  }
+  @media screen and ${device.laptop} {
+    position: absolute;
+    height: 100%;
+    padding: 0 30px;
+    width: ${(props) => props.theme.navbarWidth};
+    nav {
+      flex-direction: column;
+      height: 800px;
+      padding: 38px;
+      border-radius: 14px;
+      .nav-links {
+        flex-direction: column;
+        .site-logo {
+          margin-block-end: 78px;
+          cursor: pointer;
+        }
+        .nav-icon {
+          width: 19px;
+          margin-block-end: 40px;
+          cursor: pointer;
+          fill: #ffffff;
+        }
       }
     }
   }

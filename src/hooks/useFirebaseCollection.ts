@@ -1,11 +1,11 @@
-import * as React from "react";
+import React, {useState} from "react";
 import {db} from "../firebase";
 import {collection, query, getDocs, where} from "firebase/firestore";
 import {MediaContent} from "../types/MediaContent";
 
 const useFirebaseCollection = (contentField: string, contentValue: string) => {
-  const [data, setData] = React.useState([] as MediaContent[]);
-  const [isLoading, setIsLoading] = React.useState(true);
+  const [data, setData] = useState([] as MediaContent[]);
+  const [isLoading, setIsLoading] = useState(true);
 
   React.useEffect(() => {
     let isMounted = true;

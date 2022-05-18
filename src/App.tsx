@@ -1,20 +1,18 @@
-import * as React from "react";
+import React, {lazy} from "react";
 import {hot} from "react-hot-loader/root";
 import {ThemeProvider} from "styled-components";
 import {theme} from "./styles/themes";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import SignUpPage from "./pages/SignUpPage";
-import LoginPage from "./pages/LoginPage";
-import MoviesPage from "./pages/MoviesPage";
-import BookmarksPage from "./pages/BookmarksPage";
-import SearchPage from "./pages/SearchPage";
-import TVPage from "./pages/TVPage";
-import RedirectRoute from "./components/RedirectRoute";
 import {GlobalStyle} from "./styles/GlobalStyles";
 import {useUserAuth} from "./context/UserAuthContext";
 
-console.log("the variable ENV", process.env.VAR1);
+const Home = lazy(() => import("./pages/HomePage"));
+const SignUp = lazy(() => import("./pages/SignUpPage"));
+const LogIn = lazy(() => import("./pages/LoginPage"));
+const Movies = lazy(() => import("./pages/MoviesPage"));
+const Bookmarks = lazy(() => import("./pages/BookmarksPage"));
+const Search = lazy(() => import("./pages/SearchPage"));
+const TV = lazy(() => import("./pages/TVPage"));
 
 const App = (): JSX.Element => {
   const {logOut} = useUserAuth();
@@ -22,18 +20,20 @@ const App = (): JSX.Element => {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <BrowserRouter>
-        <button className="big-auth" onClick={() => logOut()}>
+        {/* <button className="big-auth" onClick={() => logOut()}>
           Sign Out
-        </button>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/movies" element={<MoviesPage />} />
-          <Route path="/television" element={<TVPage />} />
-          <Route path="/bookmarks" element={<BookmarksPage />} />
-          <Route path="/signup" element={<SignUpPage />} />
-          <Route path="/search/:id" element={<SearchPage />} />
-        </Routes>
+        </button> */}
+        <React.Suspense fallback={<div>Loading...</div>}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<LogIn />} />
+            <Route path="/movies" element={<Movies />} />
+            <Route path="/television" element={<TV />} />
+            <Route path="/bookmarks" element={<Bookmarks />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/search/:id" element={<Search />} />
+          </Routes>
+        </React.Suspense>
       </BrowserRouter>
     </ThemeProvider>
   );

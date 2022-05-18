@@ -5,12 +5,13 @@
     "strict": true,
     "noImplicitReturns": true,
     "noImplicitAny": true,
-    "module": "es6",
+    "module": "esnext",
     "moduleResolution": "node",
     "target": "es5",
     "allowJs": true,
     "typeRoots": ["node_modules/@types", "src/types"],
-    "jsx": "react"
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true
   },
   "include": ["./src/**/*", "images.d.ts"]
 }

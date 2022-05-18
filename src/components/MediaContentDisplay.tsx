@@ -1,7 +1,8 @@
-import * as React from "react";
+import React from "react";
 import styled from "styled-components";
 import MediaContentItem from "./MediaContentItem";
 import {MediaContent} from "../types/MediaContent";
+import {device} from "../styles/devices";
 
 type MediaContentProps = {
   content: MediaContent[];
@@ -25,9 +26,32 @@ const MediaContentDisplay = (props: MediaContentProps) => {
 };
 
 const MediaContentDisplayWrapper = styled.div`
-  display: grid;
+  width: 100%;
+  display: inline-grid;
+  justify-items: center;
 
-  @media screen and (min-width: 800px) {
+  @media screen and ${device.mobileM} {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  @media screen and ${device.mobileL} {
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: space-between;
+  }
+
+  @media screen and (min-width: 580px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media screen and ${device.tablet} {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media screen and ${device.laptop} {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media screen and ${device.laptopL} {
     grid-template-columns: repeat(4, 1fr);
   }
 `;
