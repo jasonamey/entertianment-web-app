@@ -5,6 +5,7 @@ import {theme} from "./styles/themes";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {GlobalStyle} from "./styles/GlobalStyles";
 import {useUserAuth} from "./context/UserAuthContext";
+import RedirectRoute from "./components/RedirectRoute";
 
 const Home = lazy(() => import("./pages/HomePage"));
 const SignUp = lazy(() => import("./pages/SignUpPage"));
@@ -16,22 +17,64 @@ const TV = lazy(() => import("./pages/TVPage"));
 
 const App = (): JSX.Element => {
   const {logOut} = useUserAuth();
+
+  const auth = useUserAuth();
+  const clickHandler = () => {
+    logOut();
+  };
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <BrowserRouter>
-        {/* <button className="big-auth" onClick={() => logOut()}>
+        <button className="big-auth" onClick={clickHandler}>
           Sign Out
-        </button> */}
+        </button>
         <React.Suspense fallback={<div>Loading...</div>}>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route
+              path="/"
+              element={
+                <RedirectRoute>
+                  <Home />
+                </RedirectRoute>
+              }
+            />
             <Route path="/login" element={<LogIn />} />
-            <Route path="/movies" element={<Movies />} />
-            <Route path="/television" element={<TV />} />
-            <Route path="/bookmarks" element={<Bookmarks />} />
+            <Route
+              path="/movies"
+              element={
+                <RedirectRoute>
+                  <Movies />
+                </RedirectRoute>
+              }
+            />
+
+            <Route
+              path="/television"
+              element={
+                <RedirectRoute>
+                  <TV />
+                </RedirectRoute>
+              }
+            />
+
+            <Route
+              path="/bookmarks"
+              element={
+                <RedirectRoute>
+                  <Bookmarks />
+                </RedirectRoute>
+              }
+            />
             <Route path="/signup" element={<SignUp />} />
-            <Route path="/search/:id" element={<Search />} />
+            <Route
+              path="/search/:id"
+              element={
+                <RedirectRoute>
+                  <Search />
+                </RedirectRoute>
+              }
+            />
           </Routes>
         </React.Suspense>
       </BrowserRouter>

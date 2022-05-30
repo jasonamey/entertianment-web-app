@@ -26,7 +26,7 @@ export function UserAuthContextProvider({children}) {
   }
   function logOut() {
     signOut(auth);
-    location.reload();
+    // location.reload();
   }
 
   async function saveBookmarks(bookmarks) {

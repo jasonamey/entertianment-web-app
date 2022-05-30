@@ -1,6 +1,6 @@
 import * as React from "react";
 import {useUserAuth} from "../context/UserAuthContext";
-import HomePage from "../pages/HomePage";
+import {Navigate} from "react-router-dom";
 
 type RedirectRouteProps = {
   children: JSX.Element | JSX.Element[];
@@ -8,9 +8,8 @@ type RedirectRouteProps = {
 
 const RedirectRoute = ({children}: RedirectRouteProps) => {
   const {user} = useUserAuth();
-
-  if (!user.id) {
-    return <HomePage />;
+  if (Object.keys(user).length === 0) {
+    return <Navigate to="/login" />;
   } else {
     return <>{children}</>;
   }

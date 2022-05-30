@@ -2,59 +2,70 @@ import * as React from "react";
 import {Link, useNavigate} from "react-router-dom";
 import FormContainer from "../components/ui/FormContainer";
 import FormPageContainer from "../components/ui/FormPageContainer";
+import InputField from "../components/InputField";
 import styled from "styled-components";
 import {useUserAuth} from "../context/UserAuthContext";
+import {ValidationChecker} from "../utilities/helpers";
 
-type InputState = {
+interface IInputState {
   email: string;
   password: string;
-};
+}
 
-type ErrorState = InputState & {login: string};
-
-const initialInputs: InputState = {
-  email: "",
-  password: "",
-};
-
-const initialErrorState: ErrorState = {
-  email: "",
-  password: "",
-  login: "",
-};
+type ErrorState = IInputState & {login: string};
 
 const LoginPage = () => {
-  const [inputs, setInputs] = React.useState(initialInputs);
-  const [error, setError] = React.useState(initialErrorState);
+  const [inputs, setInputs] = React.useState<IInputState>({
+    email: "",
+    password: "",
+  });
+  const [errors, setErrors] = React.useState<ErrorState>({
+    email: "",
+    password: "",
+    login: "",
+  });
   const navigate = useNavigate();
   const {logIn} = useUserAuth();
-  const validate = (type: string, input: string) => {
-    let error = false;
-    if (input.length === 0) {
-      setError((prev) => ({...prev, type: "Can't be empty"}));
-      error = true;
-    }
-    return error;
-  };
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    setError(initialErrorState);
+    setErrors({
+      email: "",
+      password: "",
+      login: "",
+    });
     const {email, password} = inputs;
-    if (!validate("email", email) && !validate("password", password)) {
+    //utility class that checks all types of input validation
+    const validationChecker = new ValidationChecker();
+    const emailError = validationChecker.isValidEmail(email);
+    const passwordError = validationChecker.isValidPassword(password);
+    let errorCopy = {...errors};
+    if (emailError.error) {
+      errorCopy["email"] = emailError.errorMessage;
+      setErrors(errorCopy);
+    }
+    if (passwordError.error) {
+      errorCopy["password"] = passwordError.errorMessage;
+      setErrors(errorCopy);
+    }
+    if (!emailError.error && !passwordError.error) {
       try {
         await logIn(email, password);
-        navigate("/");
-      } catch (err: unknown) {
+        return navigate("/");
+      } catch (err: any) {
         if (err instanceof Error) {
-          setError({email: "", password: "", login: "invalid login"});
+          setErrors({email: "", password: "", login: "invalid login"});
         }
       }
     }
   };
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setError(initialErrorState);
+    setErrors({
+      email: "",
+      password: "",
+      login: "",
+    });
     setInputs((prev) => ({...prev, [e.target.id]: e.target.value}));
   };
 
@@ -62,79 +73,45 @@ const LoginPage = () => {
     <FormPageContainer>
       <FormContainer>
         <FormWrapper onSubmit={handleSubmit}>
-          <h1>Login</h1>
-          <div className="input-group">
-            <label htmlFor="email">email</label>
-            <input
+          <form noValidate={true}>
+            <h1>Login</h1>
+            <InputField
               type="email"
+              placeHolder="Email"
               id="email"
-              placeholder="Email"
               value={inputs.email}
-              onChange={changeHandler}
+              error={errors.email}
+              changeHandler={changeHandler}
             />
-          </div>
-          <div className="input-group">
-            <label htmlFor="password">password</label>
-            <input
+            <InputField
               type="password"
+              placeHolder="Password"
               id="password"
-              placeholder="Password"
               value={inputs.password}
-              onChange={changeHandler}
+              error={errors.password}
+              changeHandler={changeHandler}
             />
-          </div>
-          <button type="submit">Login to your account</button>
-          <p>
-            Don't have an account?{" "}
-            <Link to="/signup" className="link">
-              Sign Up
-            </Link>
-          </p>
+            <button type="submit">Login to your account</button>
+            <p>
+              Don't have an account?
+              <Link to="/signup" className="link">
+                Sign Up
+              </Link>
+            </p>
+          </form>
         </FormWrapper>
       </FormContainer>
     </FormPageContainer>
   );
 };
 
-const FormWrapper = styled.form`
+const FormWrapper = styled.div`
   position: relative;
   overflow: hidden;
   h1 {
     font-size: 28px;
     font-weight: 200;
     margin-block-end: 40px;
-  }
-
-  .input-group {
-    position: relative;
-    width: 100%;
-    margin: 0;
-    label {
-      position: absolute;
-      left: -2000px;
-    }
-    input {
-      display: block;
-      width: 100%;
-      border: none;
-      border-block-end: 1px solid ${(props) => props.theme.lightBlue};
-      padding-block-end: 12px;
-      padding-inline-start: 12px;
-      font-size: 14px;
-      margin-block-end: 22px;
-      background-color: transparent;
-      color: ${(props) => props.theme.white};
-      font-weight: 200;
-      outline: none;
-    }
-    .error {
-      position: absolute;
-      right: 0;
-      top: 0;
-      font-weight: 200;
-      font-size: 14px;
-      color: ${(props) => props.theme.red};
-    }
   }
 
   button {

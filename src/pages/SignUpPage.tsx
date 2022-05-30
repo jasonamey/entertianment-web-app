@@ -2,61 +2,38 @@ import * as React from "react";
 import styled from "styled-components";
 import FormContainer from "../components/ui/FormContainer";
 import FormPageContainer from "../components/ui/FormPageContainer";
+import InputField from "../components/InputField";
 import {Link, useNavigate} from "react-router-dom";
 import {useUserAuth} from "../context/UserAuthContext";
-import {
-  isValidEmail,
-  isValidPassword,
-  passwordsBothMatch,
-} from "../utilities/helpers";
+import {ValidationChecker} from "../utilities/helpers";
 
 type ErrorState = {
   email: string;
   password: string;
+  passwordRepeat: string;
   login: string;
 };
 
 type InputState = {
   email: string;
   password: string;
-  passwordMatch: string;
-};
-
-const initialErrorState: ErrorState = {
-  email: "",
-  password: "",
-  login: "",
-};
-
-const initialInputs: InputState = {
-  email: "",
-  password: "",
-  passwordMatch: "",
-};
-
-const doValidationErrorsExist = (errors: ErrorState): boolean => {
-  return errors.email.length > 0 && errors.password.length > 0;
+  passwordRepeat: string;
 };
 
 const LoginPage = () => {
-  const [inputs, setInputs] = React.useState(initialInputs);
-  const [errors, setError] = React.useState(initialErrorState);
+  const [inputs, setInputs] = React.useState<InputState>({
+    email: "",
+    password: "",
+    passwordRepeat: "",
+  });
+  const [errors, setErrors] = React.useState<ErrorState>({
+    email: "",
+    password: "",
+    passwordRepeat: "",
+    login: "",
+  });
   const {signUp} = useUserAuth();
   const navigate = useNavigate();
-
-  const validateCheck = (
-    validationChoice: "email" | "password",
-    validationInput: string
-  ): boolean => {
-    const validateFuncs = {email: isValidEmail, password: isValidPassword};
-    let error = false;
-    let result = validateFuncs[validationChoice](validationInput);
-    if (result.length > 0) {
-      setError((prev) => ({...prev, validationChoice: result}));
-      error = true;
-    }
-    return error;
-  };
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputs((prev) => ({...prev, [e.target.id]: e.target.value}));
@@ -64,18 +41,50 @@ const LoginPage = () => {
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    setError(initialErrorState);
-    const {email, password} = inputs;
+    setErrors({
+      email: "",
+      password: "",
+      passwordRepeat: "",
+      login: "",
+    });
+    const {email, password, passwordRepeat} = inputs;
+    const validationChecker = new ValidationChecker();
+    const emailError = validationChecker.isValidEmail(email);
+    const passwordError = validationChecker.isValidPassword(password);
+    const passwordRepeatError = validationChecker.passwordsBothMatch(
+      password,
+      passwordRepeat
+    );
+
+    let errorsCopy = {...errors};
+    if (emailError.error) {
+      errorsCopy["email"] = emailError.errorMessage;
+      setErrors(errorsCopy);
+    }
+    if (passwordError.error) {
+      errorsCopy["password"] = passwordError.errorMessage;
+      setErrors(errorsCopy);
+    }
+    if (passwordRepeatError.error) {
+      errorsCopy["passwordRepeat"] = passwordRepeatError.errorMessage;
+      setErrors(errorsCopy);
+    }
     if (
-      !validateCheck("email", email) &&
-      !validateCheck("password", password)
+      !emailError.error &&
+      !passwordError.error &&
+      !passwordRepeatError.error
     ) {
       try {
         await signUp(email, password);
         navigate("/");
-      } catch (err: unknown) {
+      } catch (err: any) {
         if (err instanceof Error) {
-          setError({email: "", password: "", login: "invalid login"});
+          setErrors({
+            email: "",
+            password: "",
+            passwordRepeat: "",
+            login: "invalid login",
+          });
         }
       }
     }
@@ -83,66 +92,49 @@ const LoginPage = () => {
   return (
     <FormPageContainer>
       <FormContainer>
-        <FormWrapper onSubmit={handleSubmit}>
-          <h1>Sign Up</h1>
-          <div className="input-group">
-            <label htmlFor="email">email</label>
-            <input
+        <FormWrapper></FormWrapper>
+        <FormWrapper>
+          <form onSubmit={handleSubmit} noValidate={true}>
+            <h1>Sign Up</h1>
+            <InputField
               type="email"
               id="email"
-              placeholder="Email"
               value={inputs.email}
-              onChange={changeHandler}
+              changeHandler={changeHandler}
+              placeHolder="Email"
+              error={errors.email}
             />
-            <span className="error">{errors.email}</span>
-          </div>
-          <div className="input-group">
-            <label htmlFor="password">password</label>
-            <input
+            <InputField
               type="password"
               id="password"
-              placeholder="Password"
               value={inputs.password}
-              onChange={changeHandler}
+              changeHandler={changeHandler}
+              placeHolder="Password"
+              error={errors.password}
             />
-            <span className="error">{errors.password}</span>
-          </div>
-          <div className="input-group">
-            <label htmlFor="passwordMatch">password match</label>
-            <input
+            <InputField
               type="password"
-              id="passwordMatch"
-              placeholder="Repeat password"
-              value={inputs.passwordMatch}
-              onChange={changeHandler}
+              id="passwordRepeat"
+              value={inputs.passwordRepeat}
+              changeHandler={changeHandler}
+              placeHolder="Password Repeat"
+              error={errors.passwordRepeat}
             />
-            {inputs.password.length === inputs.passwordMatch.length &&
-              !passwordsBothMatch(inputs.password, inputs.passwordMatch) && (
-                <span className="error pwd-match">Passwords must match</span>
-              )}
-          </div>
-          <button
-            type="submit"
-            disabled={
-              !passwordsBothMatch(inputs.password, inputs.passwordMatch) ||
-              doValidationErrorsExist(errors)
-            }
-          >
-            Sign Up
-          </button>
-          <p>
-            Have an account?
-            <Link to="/login" className="link">
-              Login
-            </Link>
-          </p>
+            <button type="submit">Sign Up</button>
+            <p>
+              Have an account?
+              <Link to="/login" className="link">
+                Login
+              </Link>
+            </p>
+          </form>
         </FormWrapper>
       </FormContainer>
     </FormPageContainer>
   );
 };
 
-const FormWrapper = styled.form`
+const FormWrapper = styled.div`
   position: relative;
   overflow: hidden;
   h1 {
@@ -150,7 +142,6 @@ const FormWrapper = styled.form`
     font-weight: 200;
     margin-block-end: 40px;
   }
-
   .input-group {
     position: relative;
     width: 100%;

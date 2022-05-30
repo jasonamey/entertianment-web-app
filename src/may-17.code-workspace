@@ -8,6 +8,15 @@
     },
     {
       "path": ".."
+    },
+    {
+      "path": "../../../../../../../FRONT-END/REACT/Testing/bonnie-udemy-react-testing-library/sundaes"
+    },
+    {
+      "path": "../../../calculator-re-do"
+    },
+    {
+      "path": "../../../../../../../FRONT-END/REACT/Testing/basark-udemy-may-2022/basark-app-to-test"
     }
   ],
   "settings": {}
