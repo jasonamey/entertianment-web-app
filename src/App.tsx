@@ -2,10 +2,11 @@ import React, {lazy} from "react";
 import {hot} from "react-hot-loader/root";
 import {ThemeProvider} from "styled-components";
 import {theme} from "./styles/themes";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes, Navigate} from "react-router-dom";
 import {GlobalStyle} from "./styles/GlobalStyles";
 import {useUserAuth} from "./context/UserAuthContext";
-import RedirectRoute from "./components/RedirectRoute";
+import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedAuthRoute from "./components/ProtectedAuthRoute";
 
 const Home = lazy(() => import("./pages/HomePage"));
 const SignUp = lazy(() => import("./pages/SignUpPage"));
@@ -16,63 +17,72 @@ const Search = lazy(() => import("./pages/SearchPage"));
 const TV = lazy(() => import("./pages/TVPage"));
 
 const App = (): JSX.Element => {
-  const {logOut} = useUserAuth();
+  const {isLoggedIn} = useUserAuth();
 
-  const auth = useUserAuth();
-  const clickHandler = () => {
-    logOut();
-  };
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <BrowserRouter>
-        <button className="big-auth" onClick={clickHandler}>
-          Sign Out
-        </button>
         <React.Suspense fallback={<div>Loading...</div>}>
           <Routes>
             <Route
               path="/"
               element={
-                <RedirectRoute>
+                <ProtectedRoute>
                   <Home />
-                </RedirectRoute>
+                </ProtectedRoute>
               }
             />
-            <Route path="/login" element={<LogIn />} />
+
+            <Route
+              path="/login"
+              element={
+                <ProtectedAuthRoute>
+                  <LogIn />
+                </ProtectedAuthRoute>
+              }
+            />
+
             <Route
               path="/movies"
               element={
-                <RedirectRoute>
+                <ProtectedRoute>
                   <Movies />
-                </RedirectRoute>
+                </ProtectedRoute>
               }
             />
 
             <Route
               path="/television"
               element={
-                <RedirectRoute>
+                <ProtectedRoute>
                   <TV />
-                </RedirectRoute>
+                </ProtectedRoute>
               }
             />
 
             <Route
               path="/bookmarks"
               element={
-                <RedirectRoute>
+                <ProtectedRoute>
                   <Bookmarks />
-                </RedirectRoute>
+                </ProtectedRoute>
               }
             />
-            <Route path="/signup" element={<SignUp />} />
+            <Route
+              path="/signup"
+              element={
+                <ProtectedAuthRoute>
+                  <SignUp />
+                </ProtectedAuthRoute>
+              }
+            />
             <Route
               path="/search/:id"
               element={
-                <RedirectRoute>
+                <ProtectedRoute>
                   <Search />
-                </RedirectRoute>
+                </ProtectedRoute>
               }
             />
           </Routes>

@@ -6,7 +6,7 @@ import BookmarkIcon from "./icons/BookmarkIcon";
 import MoviesIcon from "./icons/MoviesIcon";
 import TVIcon from "./icons/TvIcon";
 import SiteLogo from "../assets/logo.svg";
-import Avatar from "./Avatar";
+import {useUserAuth} from "../context/UserAuthContext";
 import {device} from "../styles/devices";
 
 type NavbarProps = {
@@ -14,15 +14,20 @@ type NavbarProps = {
 };
 
 const Navbar = (props: NavbarProps) => {
-  const {path} = props;
+  const {logOut, user} = useUserAuth();
+  const userInitials =
+    user.email.split("@")[0].length === 1
+      ? user.email.slice(0, 1)
+      : user.email.slice(0, 2);
   return (
     <NavbarWrapper>
       <nav>
-        <div className="logo-container">
-          <img className="site-logo" src={SiteLogo} alt="Site Logo" />
-        </div>
+        <Link to="/">
+          <div className="logo-container">
+            <img className="site-logo" src={SiteLogo} alt="Site Logo" />
+          </div>
+        </Link>
         <div className="nav-links">
-          {/* <img className="site-logo" src={SiteLogo} alt="Site Logo" /> */}
           <Link to="/">
             <HomeIcon />
           </Link>
@@ -36,9 +41,9 @@ const Navbar = (props: NavbarProps) => {
             <BookmarkIcon />
           </Link>
         </div>
-        <div className="avatar-container">
-          <Avatar initials={"JA"} />
-        </div>
+        <button className="log-out" title="Log Out" onClick={() => logOut()}>
+          {userInitials.toUpperCase()}
+        </button>
       </nav>
     </NavbarWrapper>
   );
@@ -56,7 +61,6 @@ const NavbarWrapper = styled.div`
     align-items: center;
     position: relative;
     background-color: ${(props) => props.theme.darkBlue};
-
     .nav-links {
       display: flex;
       flex-direction: row;
@@ -70,6 +74,24 @@ const NavbarWrapper = styled.div`
         width: 14px;
         cursor: pointer;
         fill: #ffffff;
+      }
+    }
+    .log-out {
+      cursor: pointer;
+      height: 42px;
+      width: 42px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      border: none;
+      outline: none;
+      color: ${(props) => props.theme.white};
+      background-color: ${(props) => props.theme.red};
+      opacity: 0.3;
+      &:hover {
+        opacity: 1;
       }
     }
   }
@@ -93,7 +115,6 @@ const NavbarWrapper = styled.div`
     width: ${(props) => props.theme.navbarWidth};
     nav {
       padding: 38px 0 0 0;
-      flex-direction: column;
       display: block;
       height: 800px;
       border-radius: 14px;
@@ -109,12 +130,11 @@ const NavbarWrapper = styled.div`
         flex-direction: column;
         width: auto;
       }
-      .avatar-container {
-        width: 100%;
-        display: flex;
-        justify-content: center;
+      .log-out {
         position: absolute;
         bottom: 38px;
+        left: 50%;
+        transform: translateX(-50%);
       }
     }
   }

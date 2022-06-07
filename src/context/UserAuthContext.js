@@ -26,7 +26,7 @@ export function UserAuthContextProvider({children}) {
   }
   function logOut() {
     signOut(auth);
-    // location.reload();
+    location.reload();
   }
 
   async function saveBookmarks(bookmarks) {
@@ -57,9 +57,13 @@ export function UserAuthContextProvider({children}) {
     const unsubscribe = onAuthStateChanged(auth, async (currentuser) => {
       let docRef;
       let docSnap;
-      if (currentuser) {
+      if (!currentuser) {
+        setUser({});
+        setUserBookmarks([]);
+      } else {
         docRef = doc(db, "users", currentuser.uid);
         docSnap = await getDoc(docRef);
+
         if (docSnap.exists()) {
           let data = docSnap.data();
           setUser({id: docSnap.id, ...data});

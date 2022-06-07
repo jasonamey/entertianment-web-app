@@ -32,7 +32,7 @@ const SearchPage = () => {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [id]);
 
   return (
     <ContentPageContainer>

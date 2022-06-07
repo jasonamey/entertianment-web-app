@@ -25,7 +25,7 @@ const LoginPage = () => {
     login: "",
   });
   const navigate = useNavigate();
-  const {logIn} = useUserAuth();
+  const {logIn, user} = useUserAuth();
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -68,12 +68,11 @@ const LoginPage = () => {
     });
     setInputs((prev) => ({...prev, [e.target.id]: e.target.value}));
   };
-
   return (
     <FormPageContainer>
       <FormContainer>
-        <FormWrapper onSubmit={handleSubmit}>
-          <form noValidate={true}>
+        <FormWrapper>
+          <form noValidate={true} onSubmit={handleSubmit}>
             <h1>Login</h1>
             <InputField
               type="email"
@@ -99,6 +98,15 @@ const LoginPage = () => {
               </Link>
             </p>
           </form>
+          <div className="login-note">
+            <p>USE LOGIN:</p>
+            <p>
+              <strong>E</strong>: user@mail.com
+            </p>
+            <p>
+              <strong>P</strong>: 11112222
+            </p>
+          </div>
         </FormWrapper>
       </FormContainer>
     </FormPageContainer>
@@ -107,7 +115,7 @@ const LoginPage = () => {
 
 const FormWrapper = styled.div`
   position: relative;
-  overflow: hidden;
+  // overflow: hidden;
   h1 {
     font-size: 28px;
     font-weight: 200;
@@ -140,6 +148,18 @@ const FormWrapper = styled.div`
       text-decoration: none;
       margin-inline-start: 8px;
     }
+  }
+  .login-note {
+    background-color: white;
+    font-family: sans-serif;
+    color: black;
+    border-radius: 10px;
+    border: 3px dashed red;
+    padding: 5px;
+    position: absolute;
+    font-size: 12px;
+    bottom: -80px;
+    z-index: 100;
   }
 `;
 

@@ -17,7 +17,18 @@
     },
     {
       "path": "../../../../../../../FRONT-END/REACT/Testing/basark-udemy-may-2022/basark-app-to-test"
+    },
+    {
+      "path": "../../../to-do-re-do"
+    },
+    {
+      "path": "../../../../product-feedback-app"
+    },
+    {
+      "path": "../../../to-do-re-do-copy"
     }
   ],
-  "settings": {}
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "to-do-re-do"
+  }
 }

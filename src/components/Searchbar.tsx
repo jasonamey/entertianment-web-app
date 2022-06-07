@@ -8,12 +8,12 @@ const Searchbar = () => {
   const [inputTerm, setInputTerm] = useState("");
   const navigate = useNavigate();
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
     setInputTerm(e.target.value);
   };
 
   const submitHandler = (e: React.SyntheticEvent) => {
-    navigate(`/search/${inputTerm}`);
+    e.preventDefault();
+    navigate(`/search/${inputTerm.toLowerCase()}`);
   };
   return (
     <SearchbarWrapper onSubmit={submitHandler}>

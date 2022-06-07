@@ -31,14 +31,6 @@ const MediaContentItem = (props: MediaContentItemProps) => {
   }
 };
 
-// @media screen and ${device.mobileL} {
-//   width: 168px;
-//   margin-block-end: 20px;
-//   .image-wrapper {
-//     height: 110px;
-//   }
-// }
-
 const MediaContentItemWrapper = styled.div<{
   largeImage: string;
   smallImage: string;

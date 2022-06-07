@@ -142,37 +142,6 @@ const FormWrapper = styled.div`
     font-weight: 200;
     margin-block-end: 40px;
   }
-  .input-group {
-    position: relative;
-    width: 100%;
-    margin: 0;
-    label {
-      position: absolute;
-      left: -2000px;
-    }
-    input {
-      display: block;
-      width: 100%;
-      border: none;
-      border-block-end: 1px solid ${(props) => props.theme.lightBlue};
-      padding-block-end: 12px;
-      padding-inline-start: 12px;
-      font-size: 14px;
-      margin-block-end: 22px;
-      background-color: transparent;
-      color: ${(props) => props.theme.white};
-      font-weight: 200;
-      outline: none;
-    }
-    .error {
-      position: absolute;
-      right: 0;
-      top: 0;
-      font-weight: 200;
-      font-size: 14px;
-      color: ${(props) => props.theme.red};
-    }
-  }
 
   button {
     background-color: ${(props) => props.theme.red};
