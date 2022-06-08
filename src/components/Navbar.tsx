@@ -1,19 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 import {Link} from "react-router-dom";
-import HomeIcon from "./icons/HomeIcon";
-import BookmarkIcon from "./icons/BookmarkIcon";
-import MoviesIcon from "./icons/MoviesIcon";
-import TVIcon from "./icons/TvIcon";
+import {BookmarkIcon, HomeIcon, MoviesIcon, TVIcon} from "./icons";
 import SiteLogo from "../assets/logo.svg";
 import {useUserAuth} from "../context/UserAuthContext";
 import {device} from "../styles/devices";
+import {useLocation} from "react-router-dom";
 
 type NavbarProps = {
   path: string;
 };
 
 const Navbar = (props: NavbarProps) => {
+  const location = useLocation();
+  console.log("location", location);
   const {logOut, user} = useUserAuth();
   const userInitials =
     user.email.split("@")[0].length === 1

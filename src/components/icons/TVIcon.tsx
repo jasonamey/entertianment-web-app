@@ -2,7 +2,7 @@ import * as React from "react";
 import IconStyles from "./IconStyles";
 import {useLocation} from "react-router-dom";
 
-const TVIcon = () => {
+export const TVIcon = () => {
   const location = useLocation();
   return (
     <IconStyles>
@@ -15,5 +15,3 @@ const TVIcon = () => {
     </IconStyles>
   );
 };
-
-export default TVIcon;

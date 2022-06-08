@@ -1,7 +1,7 @@
 import * as React from "react";
 import {useLocation} from "react-router-dom";
 
-const BookmarkIcon = () => {
+export const BookmarkIcon = () => {
   const location = useLocation();
   return (
     <svg width="17" height="20" xmlns="http://www.w3.org/2000/svg">
@@ -13,4 +13,4 @@ const BookmarkIcon = () => {
   );
 };
 
-export default BookmarkIcon;
+// export default BookmarkIcon;

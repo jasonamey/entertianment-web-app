@@ -17,8 +17,6 @@ const Search = lazy(() => import("./pages/SearchPage"));
 const TV = lazy(() => import("./pages/TVPage"));
 
 const App = (): JSX.Element => {
-  const {isLoggedIn} = useUserAuth();
-
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
@@ -33,7 +31,6 @@ const App = (): JSX.Element => {
                 </ProtectedRoute>
               }
             />
-
             <Route
               path="/login"
               element={
@@ -42,7 +39,6 @@ const App = (): JSX.Element => {
                 </ProtectedAuthRoute>
               }
             />
-
             <Route
               path="/movies"
               element={
@@ -51,7 +47,6 @@ const App = (): JSX.Element => {
                 </ProtectedRoute>
               }
             />
-
             <Route
               path="/television"
               element={
@@ -60,7 +55,6 @@ const App = (): JSX.Element => {
                 </ProtectedRoute>
               }
             />
-
             <Route
               path="/bookmarks"
               element={

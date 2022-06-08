@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import logo from "../assets/icon-nav-movies.svg";
+import MoviesIcon from "../assets/icon-category-movie.svg";
+import TVIcon from "../assets/icon-category-tv.svg";
 import {device} from "../styles/devices";
 
 type TitleBadgeProps = {
@@ -18,6 +19,18 @@ const TitleBadge = (props: TitleBadgeProps) => {
       <div className="film-info-container">
         <h4>
           <span>{`${year}`}</span>
+          <span>&middot;</span>
+          <span>
+            {category === "Movie" ? (
+              <img
+                src={MoviesIcon}
+                alt="movies icon"
+                style={{height: 15, width: 15, marginBottom: "-2px"}}
+              />
+            ) : (
+              <img src={TVIcon} alt="tv icon" style={{height: 15, width: 15}} />
+            )}
+          </span>
           <span>&middot;</span>
           <span>{`${category}`}</span>
           <span>&middot;</span>
@@ -42,6 +55,11 @@ const TitleBadgeWrapper = styled.div<{position: string}>`
     opacity: 0.6;
     font-weight: 200;
     margin-bottom: 2px;
+    h4 {
+      display: flex;
+      align-items: center;
+    }
+
     span {
       margin-inline-end: 8px;
     }

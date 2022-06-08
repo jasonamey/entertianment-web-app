@@ -7,16 +7,36 @@ import {
 } from "firebase/auth";
 import {doc, setDoc, getDoc, updateDoc} from "firebase/firestore";
 import {auth, db} from "../firebase";
+import {User} from "../types";
 
-const userAuthContext = React.createContext();
+interface IAuthContext {
+  user: User;
+  userBookmarks: string[];
+  logIn: (email: string, password: string) => void;
+  signUp: (email: string, password: string) => void;
+  logOut: () => void;
+  saveBookmarks: (bookmarks: string[]) => void;
+  manageBookmark: (bookmarkAction: "add" | "remove", bookmark: string) => void;
+}
 
-export function UserAuthContextProvider({children}) {
-  const [user, setUser] = React.useState({});
-  const [userBookmarks, setUserBookmarks] = React.useState([]);
-  function logIn(email, password) {
+export const UserAuthContext: React.Context<IAuthContext> = React.createContext(
+  {} as IAuthContext
+);
+
+export function UserAuthContextProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const [user, setUser] = React.useState<User>({} as User);
+  const [userBookmarks, setUserBookmarks] = React.useState<string[]>([]);
+  console.log("user", user);
+  console.log("bookmarks", userBookmarks);
+
+  function logIn(email: string, password: string) {
     return signInWithEmailAndPassword(auth, email, password);
   }
-  function signUp(email, password) {
+  function signUp(email: string, password: string) {
     createUserWithEmailAndPassword(auth, email, password).then(async (data) => {
       await setDoc(doc(db, "users", data.user.uid), {
         email: data.user.email,
@@ -29,14 +49,17 @@ export function UserAuthContextProvider({children}) {
     location.reload();
   }
 
-  async function saveBookmarks(bookmarks) {
+  async function saveBookmarks(bookmarks: string[]) {
     const userRef = doc(db, "users", user.id);
     await updateDoc(userRef, {
       bookmarks,
     });
   }
 
-  async function manageBookmark(bookmarkAction, bookmark) {
+  async function manageBookmark(
+    bookmarkAction: "add" | "remove",
+    bookmark: string
+  ) {
     if (bookmarkAction === "add") {
       let newBookmarks = [...userBookmarks, bookmark];
       setUserBookmarks(newBookmarks);
@@ -58,15 +81,15 @@ export function UserAuthContextProvider({children}) {
       let docRef;
       let docSnap;
       if (!currentuser) {
-        setUser({});
+        setUser({} as User);
         setUserBookmarks([]);
       } else {
         docRef = doc(db, "users", currentuser.uid);
         docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-          let data = docSnap.data();
-          setUser({id: docSnap.id, ...data});
+          let data = docSnap.data() as User;
+          setUser({...data, id: docSnap.id});
           setUserBookmarks(data.bookmarks);
         }
       }
@@ -76,9 +99,8 @@ export function UserAuthContextProvider({children}) {
       unsubscribe();
     };
   }, []);
-
   return (
-    <userAuthContext.Provider
+    <UserAuthContext.Provider
       value={{
         user,
         userBookmarks,
@@ -86,13 +108,14 @@ export function UserAuthContextProvider({children}) {
         signUp,
         logOut,
         manageBookmark,
+        saveBookmarks,
       }}
     >
       {children}
-    </userAuthContext.Provider>
+    </UserAuthContext.Provider>
   );
 }
 
 export function useUserAuth() {
-  return React.useContext(userAuthContext);
+  return React.useContext(UserAuthContext);
 }

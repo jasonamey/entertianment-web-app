@@ -1,34 +1,7 @@
 {
   "folders": [
     {
-      "path": "../../../../../../../FRONT-END/REACT/frontend-masters/intermediate-react-brian/citr-v7-project/12-portals-and-refs"
-    },
-    {
-      "path": "../../../dev-jobs-web-app/devjobs-web-app-code-solution"
-    },
-    {
       "path": ".."
-    },
-    {
-      "path": "../../../../../../../FRONT-END/REACT/Testing/bonnie-udemy-react-testing-library/sundaes"
-    },
-    {
-      "path": "../../../calculator-re-do"
-    },
-    {
-      "path": "../../../../../../../FRONT-END/REACT/Testing/basark-udemy-may-2022/basark-app-to-test"
-    },
-    {
-      "path": "../../../to-do-re-do"
-    },
-    {
-      "path": "../../../../product-feedback-app"
-    },
-    {
-      "path": "../../../to-do-re-do-copy"
     }
-  ],
-  "settings": {
-    "liveServer.settings.multiRootWorkspaceName": "to-do-re-do"
-  }
+  ]
 }
