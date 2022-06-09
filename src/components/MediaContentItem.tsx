@@ -4,6 +4,7 @@ import {MediaContent} from "../types/MediaContent";
 import BookmarkBadge from "./BookmarkBadge";
 import TitleBadge from "./TitleBadge";
 import {device} from "../styles/devices";
+
 type MediaContentItemProps = MediaContent & {
   id: string;
 };

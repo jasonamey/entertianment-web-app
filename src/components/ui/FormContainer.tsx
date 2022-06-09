@@ -2,11 +2,11 @@ import * as React from "react";
 import styled from "styled-components";
 import {device} from "../../styles/devices";
 
-type FormContainerProps = {
+interface IFormContainerProps {
   children: JSX.Element | JSX.Element[];
-};
+}
 
-const FormContainer = ({children}: FormContainerProps) => {
+const FormContainer = ({children}: IFormContainerProps) => {
   return <FormContainerWrapper>{children}</FormContainerWrapper>;
 };
 

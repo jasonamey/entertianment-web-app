@@ -6,11 +6,11 @@ import {useUserAuth} from "../context/UserAuthContext";
 
 const bookmarkImage = [bookmarkIconFull, bookmarkIconEmpty];
 
-type BookmarkBadgeProps = {
+interface IBookmarkBadgeProps {
   id: string;
-};
+}
 
-const BookmarkBadge = (props: BookmarkBadgeProps) => {
+const BookmarkBadge = (props: IBookmarkBadgeProps) => {
   const {manageBookmark, userBookmarks} = useUserAuth();
   const {id} = props;
 

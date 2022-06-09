@@ -8,11 +8,11 @@ import {device} from "../styles/devices";
 import {useLocation} from "react-router-dom";
 import {AiOutlineLogout} from "react-icons/ai";
 
-type NavbarProps = {
+interface INavbarProps {
   path: string;
-};
+}
 
-const Navbar = (props: NavbarProps) => {
+const Navbar = (props: INavbarProps) => {
   const location = useLocation();
   console.log("location", location);
   const {logOut, user} = useUserAuth();

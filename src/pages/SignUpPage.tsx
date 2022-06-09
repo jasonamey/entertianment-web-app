@@ -7,26 +7,26 @@ import {Link, useNavigate} from "react-router-dom";
 import {useUserAuth} from "../context/UserAuthContext";
 import {ValidationChecker} from "../utilities/helpers";
 
-type ErrorState = {
+interface IErrorState {
   email: string;
   password: string;
   passwordRepeat: string;
   login: string;
-};
+}
 
-type InputState = {
+interface IInputState {
   email: string;
   password: string;
   passwordRepeat: string;
-};
+}
 
 const LoginPage = () => {
-  const [inputs, setInputs] = React.useState<InputState>({
+  const [inputs, setInputs] = React.useState<IInputState>({
     email: "",
     password: "",
     passwordRepeat: "",
   });
-  const [errors, setErrors] = React.useState<ErrorState>({
+  const [errors, setErrors] = React.useState<IErrorState>({
     email: "",
     password: "",
     passwordRepeat: "",

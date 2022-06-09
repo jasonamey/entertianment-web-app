@@ -2,11 +2,11 @@ import * as React from "react";
 import styled from "styled-components";
 import logo from "../../assets/logo.svg";
 
-type FormPageContainerProps = {
+interface IFormPageContainerProps {
   children: JSX.Element | JSX.Element[];
-};
+}
 
-const FormPageContainer = ({children}: FormPageContainerProps) => {
+const FormPageContainer = ({children}: IFormPageContainerProps) => {
   return (
     <FormPageContainerWrapper>
       <img src={logo} alt="App Logo" className="logo" />

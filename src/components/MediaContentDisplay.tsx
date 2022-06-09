@@ -4,12 +4,12 @@ import MediaContentItem from "./MediaContentItem";
 import {MediaContent} from "../types/MediaContent";
 import {device} from "../styles/devices";
 
-type MediaContentProps = {
+interface IMediaContentProps {
   content: MediaContent[];
   headline: string;
-};
+}
 
-const MediaContentDisplay = (props: MediaContentProps) => {
+const MediaContentDisplay = (props: IMediaContentProps) => {
   const {content, headline} = props;
 
   return (

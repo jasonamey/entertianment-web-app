@@ -55,6 +55,10 @@ const LoginPage = () => {
       } catch (err: any) {
         if (err instanceof Error) {
           setErrors({email: "", password: "", login: "invalid login"});
+          setTimeout(() => {
+            setErrors({email: "", password: "", login: ""});
+            setInputs({email: "", password: ""});
+          }, 2000);
         }
       }
     }
@@ -90,6 +94,9 @@ const LoginPage = () => {
               error={errors.password}
               changeHandler={changeHandler}
             />
+            {errors.login && (
+              <span className="login-error">{errors.login}</span>
+            )}
             <button type="submit">Login to your account</button>
             <p>
               Don't have an account?
@@ -145,6 +152,14 @@ const FormWrapper = styled.div`
       margin-inline-start: 8px;
     }
   }
+  .login-error {
+    color: ${(props) => props.theme.red};
+    position: absolute;
+    margin-top: -5%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: 300;
+  }
   .login-note {
     background-color: white;
     font-family: sans-serif;
@@ -154,7 +169,8 @@ const FormWrapper = styled.div`
     padding: 5px;
     position: absolute;
     font-size: 12px;
-    bottom: -80px;
+    top: 0;
+    right: 0;
     z-index: 100;
   }
 `;

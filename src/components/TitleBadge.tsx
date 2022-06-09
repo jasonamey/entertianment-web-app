@@ -4,15 +4,15 @@ import MoviesIcon from "../assets/icon-category-movie.svg";
 import TVIcon from "../assets/icon-category-tv.svg";
 import {device} from "../styles/devices";
 
-type TitleBadgeProps = {
+interface ITitleBadgeProps {
   position: "trending" | "feature";
   category: string;
   year: number;
   rating: string;
   title: string;
-};
+}
 
-const TitleBadge = (props: TitleBadgeProps) => {
+const TitleBadge = (props: ITitleBadgeProps) => {
   const {year, category, position, rating, title} = props;
   return (
     <TitleBadgeWrapper position={position}>

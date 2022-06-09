@@ -4,11 +4,11 @@ import TrendingMovie from "./TrendingMovie";
 import {MediaContent} from "../types/MediaContent";
 import {device} from "../styles/devices";
 
-type TrendingMoviewsProps = {
+interface ITrendingMoviewsProps {
   movies: MediaContent[];
-};
+}
 
-const TrendingMovies = (props: TrendingMoviewsProps) => {
+const TrendingMovies = (props: ITrendingMoviewsProps) => {
   const {movies} = props;
   return (
     <>

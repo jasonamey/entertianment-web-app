@@ -4,11 +4,11 @@ import Navbar from "../Navbar";
 import Searchbar from "../Searchbar";
 import {device} from "../../styles/devices";
 
-type ContentPageContainerProps = {
+interface IContentPageContainerProps {
   children: JSX.Element | JSX.Element[];
-};
+}
 
-const ContentPageContainer = ({children}: ContentPageContainerProps) => {
+const ContentPageContainer = ({children}: IContentPageContainerProps) => {
   return (
     <ContentPageContainerWrapper>
       <Navbar path={location.pathname} />

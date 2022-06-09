@@ -1,11 +1,11 @@
 import * as React from "react";
 import styled from "styled-components";
 import {device} from "../../styles/devices";
-type IconStylesProps = {
+interface IIconStylesProps {
   children: JSX.Element | JSX.Element[];
-};
+}
 
-const IconStyles = (props: IconStylesProps) => {
+const IconStyles = (props: IIconStylesProps) => {
   const {children} = props;
   return <IconStylesWrapper>{children}</IconStylesWrapper>;
 };
