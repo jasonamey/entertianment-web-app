@@ -15,6 +15,11 @@ const FormContainerWrapper = styled.div`
   background-color: ${(props) => props.theme.darkBlue};
   padding: 30px;
   border-radius: 16px;
+  input,
+  textarea {
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
   @media screen and ${device.mobileL} {
     width: 400px;
   }

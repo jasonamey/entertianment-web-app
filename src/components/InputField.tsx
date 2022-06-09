@@ -45,11 +45,11 @@ const InputFieldWrapper = styled.div`
     display: block;
     width: 100%;
     border: none;
-    border-block-end: 1px solid ${(props) => props.theme.lightBlue};
-    padding-block-end: 12px;
+    border-bottom: 1px solid ${(props) => props.theme.lightBlue};
+    padding-bottom: 12px;
     padding-inline-start: 12px;
     font-size: 14px;
-    margin-block-end: 22px;
+    margin-bottom: 22px;
     background-color: transparent;
     color: ${(props) => props.theme.white};
     font-weight: 200;

@@ -13,7 +13,7 @@ const IconStyles = (props: IconStylesProps) => {
 const IconStylesWrapper = styled.div`
   cursor: pointer;
   @media screen and ${device.laptop} {
-    margin-block-end: 40px;
+    margin-bottom: 40px;
   }
 `;
 

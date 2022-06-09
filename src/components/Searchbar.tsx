@@ -35,12 +35,12 @@ const SearchbarWrapper = styled.form`
   align-items: center;
   padding-right: 30px;
   font-size: 24px;
-  margin-block-end: 16px;
+  margin-bottom: 16px;
   position: relaive;
 
   .search-icon {
     width: 28px;
-    margin-right: 22px;
+    margin-right: 16px;
   }
   label {
     position: absolute;
@@ -51,11 +51,11 @@ const SearchbarWrapper = styled.form`
     background: none;
     border: none;
     font-weight: 200;
-    font-size: 20px;
+    font-size: 18px;
     outline: none;
     color: white;
     &::placeholder {
-      font-size: 20px;
+      font-size: 18px;
     }
   }
   @media screen and ${device.laptop} {
@@ -64,9 +64,9 @@ const SearchbarWrapper = styled.form`
       margin-right: 10px;
     }
     input {
-      font-size: 15px;
+      font-size: 18px;
       &::placeholder {
-        font-size: 15px;
+        font-size: 18px;
       }
     }
   }

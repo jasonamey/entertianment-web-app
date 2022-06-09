@@ -34,19 +34,14 @@ body {
   color : ${(props) => props.theme.white};
   font-family: 'Outfit', sans-serif;
 	min-height: 100%;
-	padding-block-start : 32px;
+	padding-top : 32px;
 	
 }
 
 h2 {
 	font-weight : 200;
-	margin-block-end : 16px;
+	margin-bottom : 16px;
 	font-size : 22px;
 	
-}
-.big-auth {
-	position : absolute;
-	right : 0;
-
 }
 `;

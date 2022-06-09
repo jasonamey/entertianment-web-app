@@ -1,3 +1,18 @@
+# Frontend Mentor - Entertainment Web App
+
+This is a solution to the [Entertainment Web App challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/entertainment-web-app-J-UhgAW1X). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
+
+## Table of contents
+
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+  - [Built With](#built-with)
+- [Author](#author)
+
+## Overview
+
 ### The challenge
 
 Your users should be able to:
@@ -12,17 +27,17 @@ Your users should be able to:
 
 ### Screenshot
 
-Desktop :
+#### Desktop :
 
 ![](https://firebasestorage.googleapis.com/v0/b/entertainment-web-app-e9562.appspot.com/o/screenshots%2FScreen%20Shot%202022-06-08%20at%2011.44.23%20AM.png?alt=media&token=b61ee779-b9d7-4120-afea-f7cf6ae14095)
 
-![](https://firebasestorage.googleapis.com/v0/b/entertainment-web-app-e9562.appspot.com/o/screenshots%2FScreen%20Shot%202022-06-08%20at%2011.44.59%20AM.png?alt=media&token=7a91724e-9603-491f-b0c6-3ea648dae743)
+![](https://firebasestorage.googleapis.com/v0/b/entertainment-web-app-e9562.appspot.com/o/screenshots%2FScreen%20Shot%202022-06-09%20at%206.41.04%20PM.png?alt=media&token=3d306523-f2c0-44d1-9c6c-204dba76742c)
 
-![](https://firebasestorage.googleapis.com/v0/b/entertainment-web-app-e9562.appspot.com/o/screenshots%2FScreen%20Shot%202022-06-08%20at%2011.45.18%20AM.png?alt=media&token=6c74dd40-97cc-4a1d-84f5-d8152bb2048f)
+![](https://firebasestorage.googleapis.com/v0/b/entertainment-web-app-e9562.appspot.com/o/screenshots%2FScreen%20Shot%202022-06-09%20at%206.43.10%20PM.png?alt=media&token=437e4266-0c0f-470e-bdb6-065c9fba3047)
 
-Mobile :
+#### Mobile :
 
-![](https://firebasestorage.googleapis.com/v0/b/project-data-ja.appspot.com/o/front-end-mentor%2Forder-summary-component%2Fmobile-component.png?alt=media&token=6ce2b04d-c4ce-4fcf-ba44-43aabfaab2e7)
+![](https://firebasestorage.googleapis.com/v0/b/entertainment-web-app-e9562.appspot.com/o/screenshots%2FJASON%20AMEY%20-%20Entertainment%20Web%20App.jpg?alt=media&token=dc2b7390-52ff-4046-9189-00ed616fecfb)
 
 ### Links
 
@@ -31,12 +46,12 @@ Mobile :
 
 ## Built With
 
--ReactJs
--TypeScript
--Firebase Storage
--Firebase Authentication
--Webpack
--Styled Components
+- ReactJs
+- TypeScript
+- Firebase Storage
+- Firebase Authentication
+- Webpack
+- Styled Components
 
 ## Author
 

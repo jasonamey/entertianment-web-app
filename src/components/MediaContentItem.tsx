@@ -41,17 +41,20 @@ const MediaContentItemWrapper = styled.div<{
   .image-wrapper {
     position: relative;
     overflow: hidden;
+    //safari border radius hack
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
     width: 100%;
     height: 110px;
     border-radius: 10px;
-    margin-block-end: 5px;
+    margin-bottom: 5px;
     .image-container {
       width: 100%;
       height: 100%;
       background-size: cover;
       background-repeat: no-repeat;
       background-image: url("${(props) => props.smallImage}");
-      transition: all 1.4s;
+      transition: transform 1.4s;
+      overflow: hidden;
       &:hover {
         transform: scale(1.1);
       }
@@ -68,7 +71,7 @@ const MediaContentItemWrapper = styled.div<{
 
   @media screen and ${device.laptop} {
     width: 279px;
-    margin-block-end: 40px;
+    margin-bottom: 40px;
     .image-wrapper {
       height: 180px;
     }

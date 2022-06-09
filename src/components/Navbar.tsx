@@ -6,6 +6,7 @@ import SiteLogo from "../assets/logo.svg";
 import {useUserAuth} from "../context/UserAuthContext";
 import {device} from "../styles/devices";
 import {useLocation} from "react-router-dom";
+import {AiOutlineLogout} from "react-icons/ai";
 
 type NavbarProps = {
   path: string;
@@ -41,9 +42,9 @@ const Navbar = (props: NavbarProps) => {
             <BookmarkIcon />
           </Link>
         </div>
-        <button className="log-out" title="Log Out" onClick={() => logOut()}>
-          {userInitials.toUpperCase()}
-        </button>
+        <div className="log-out" onClick={() => logOut()} role="button">
+          <AiOutlineLogout size={30} />
+        </div>
       </nav>
     </NavbarWrapper>
   );
@@ -89,7 +90,7 @@ const NavbarWrapper = styled.div`
       outline: none;
       color: ${(props) => props.theme.white};
       background-color: ${(props) => props.theme.red};
-      opacity: 0.3;
+      opacity: 0.8;
       &:hover {
         opacity: 1;
       }

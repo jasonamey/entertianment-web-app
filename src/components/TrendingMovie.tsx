@@ -34,7 +34,8 @@ const TrendingMovieWrapper = styled.div<{
   margin-right: 15px;
   min-width: 240px;
   border-radius: 10px;
-
+  //safari border radius hack
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
   .image-container {
     width: 100%;
     height: 100%;

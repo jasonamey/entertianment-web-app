@@ -30,12 +30,12 @@ const TrendingMoviesWrapper = styled.div`
   scrollbar-width: none;
   height: 140px;
   border-radius: 10px;
-  margin-block-end: 20px;
+  margin-bottom: 20px;
   &::-webkit-scrollbar {
     display: none;
   }
   @media screen and ${device.tablet} {
-    margin-block-end: 50px;
+    margin-bottom: 50px;
     height: 230px;
   }
 `;

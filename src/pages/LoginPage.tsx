@@ -99,13 +99,9 @@ const LoginPage = () => {
             </p>
           </form>
           <div className="login-note">
-            <p>USE LOGIN:</p>
-            <p>
-              <strong>E</strong>: user@mail.com
-            </p>
-            <p>
-              <strong>P</strong>: 11112222
-            </p>
+            <p>YOU CAN USE LOGIN:</p>
+            <p>Email: user@mail.com</p>
+            <p>Pwd: 11112222</p>
           </div>
         </FormWrapper>
       </FormContainer>
@@ -115,11 +111,11 @@ const LoginPage = () => {
 
 const FormWrapper = styled.div`
   position: relative;
-  // overflow: hidden;
+  overflow: hidden;
   h1 {
     font-size: 28px;
     font-weight: 200;
-    margin-block-end: 40px;
+    margin-bottom: 40px;
   }
 
   button {
@@ -128,11 +124,11 @@ const FormWrapper = styled.div`
     width: 100%;
     border: none;
     cursor: pointer;
-    padding-block: 16px;
+    padding: 16px 0;
     border-radius: 6px;
     font-weight: 200;
-    margin-block-start: 14px;
-    margin-block-end: 20px;
+    margin-top: 14px;
+    margin-bottom: 20px;
     transition: 0.8s;
     &:hover {
       background: ${(props) => props.theme.white};

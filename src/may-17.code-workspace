@@ -2,6 +2,9 @@
   "folders": [
     {
       "path": ".."
+    },
+    {
+      "path": "../../../dev-jobs-web-app/devjobs-web-app-code-solution"
     }
   ]
 }
