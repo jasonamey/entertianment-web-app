@@ -48,7 +48,7 @@ Your users should be able to:
 
 - ReactJs
 - TypeScript
-- Firebase Storage
+- Firebase Firestore
 - Firebase Authentication
 - Webpack
 - Styled Components
