@@ -17,13 +17,13 @@ This is a solution to the [Entertainment Web App challenge on Frontend Mentor](h
 
 Your users should be able to:
 
--Navigate between Home, Movies, TV Series, and Bookmarked Shows pages
--Add/Remove bookmarks from all movies and TV series
--Search for relevant shows on all pages
--View the optimal layout for the app depending on their device's screen size
--See hover states for all interactive elements on the page
--Bonus: Build this project as a full-stack application
--Bonus: If you're building a full-stack app, we provide authentication screen (sign-up/login) designs if you'd like to create an auth flow
+- Navigate between Home, Movies, TV Series, and Bookmarked Shows pages
+- Add/Remove bookmarks from all movies and TV series
+- Search for relevant shows on all pages
+- View the optimal layout for the app depending on their device's screen size
+- See hover states for all interactive elements on the page
+- Bonus: Build this project as a full-stack application
+- Bonus: If you're building a full-stack app, we provide authentication screen (sign-up/login) designs if you'd like to create an auth flow
 
 ### Screenshot
 
@@ -37,7 +37,7 @@ Your users should be able to:
 
 #### Mobile :
 
-![](https://firebasestorage.googleapis.com/v0/b/entertainment-web-app-e9562.appspot.com/o/screenshots%2FJASON%20AMEY%20-%20Entertainment%20Web%20App.jpg?alt=media&token=dc2b7390-52ff-4046-9189-00ed616fecfb)
+![](https://firebasestorage.googleapis.com/v0/b/entertainment-web-app-e9562.appspot.com/o/screenshots%2Fagain-web-app.png?alt=media&token=4d28166d-5d70-48dc-99c0-ff539e9e5225)
 
 ### Links
 
