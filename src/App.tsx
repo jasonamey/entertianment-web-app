@@ -8,6 +8,7 @@ import {useUserAuth} from "./context/UserAuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ProtectedAuthRoute from "./components/ProtectedAuthRoute";
 
+//code splitting
 const Home = lazy(() => import("./pages/HomePage"));
 const SignUp = lazy(() => import("./pages/SignUpPage"));
 const LogIn = lazy(() => import("./pages/LoginPage"));
