@@ -4,7 +4,6 @@ import {ThemeProvider} from "styled-components";
 import {theme} from "./styles/themes";
 import {BrowserRouter, Route, Routes, Navigate} from "react-router-dom";
 import {GlobalStyle} from "./styles/GlobalStyles";
-import {useUserAuth} from "./context/UserAuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ProtectedAuthRoute from "./components/ProtectedAuthRoute";
 

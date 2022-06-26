@@ -37,7 +37,7 @@ Your users should be able to:
 
 #### Mobile :
 
-![](https://firebasestorage.googleapis.com/v0/b/entertainment-web-app-e9562.appspot.com/o/screenshots%2Fagain-web-app.png?alt=media&token=4d28166d-5d70-48dc-99c0-ff539e9e5225)
+<img src="https://firebasestorage.googleapis.com/v0/b/entertainment-web-app-e9562.appspot.com/o/screenshots%2Fagain-web-app.png?alt=media&token=4d28166d-5d70-48dc-99c0-ff539e9e5225"  width="30%">
 
 ### Links
 
